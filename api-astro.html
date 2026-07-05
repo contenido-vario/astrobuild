@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./img/rt.ico" type="image/x-ico">
+  <title>Astro</title>
+
+  <!-- Cargar el archivo CSS de distribución -->
+  <link rel="stylesheet" href="./dist/output.css">
+
+  <script src="./js/highlight-setup.js" defer></script>
+</head>
+
+<body class="bg-stone-100 leading-normal tracking-normal">
+  <main class="container mx-auto mt-3 px-6 pt-1 pb-6">
+  <h1 class="det">La API de Astro</h1>
+
+  <p>La API de Astro es el motor lógico que da control sobre las propiedades, rutas, cookies y permite crear endpoints que devuelven datos en JSON para conectar tu web con el mundo exterior o tus bases de datos.</p>
+
+  <p>Se divide principalmente en dos grandes bloques:</p>
+
+  <h3>A) Las variables globales del Objeto Astro (En el Frontmatter)</h3>
+  <p>En la sección de arriba entre los guiones --- (el frontmatter) de los componentes de <i>Astro</i>, se tiene acceso a un objeto global llamado <i>Astro</i> que brinda facilidades para leer el contexto de la web:</p>
+
+  <ul class="arrow">
+    <li><code>Astro.props</code>: Para recibir datos desde fuera de tus componentes (los títulos de las tarjetas).</li>
+    <li><code>Astro.request</code>: Brinda información sobre la petición HTTP actual (la URL, los headers...).</li>
+    <li><code>Astro.redirect()</code>: Para mandar al usuario a otra página de forma automática (útil si hay un error o un cambio de sección).</li>
+    <li><code>Astro.cookies</code>: Para leer y escribir cookies de sesión de forma ultra directa.</li>
+  </ul>
+
+  <h3>B) Los Endpoints de la API (Servicios / Rutas de la API)</h3>
+
+  <p>Astro no solo genera HTML. Si se creas un archivo con extensión <code>.js</code> o <code>.ts</code> dentro de la carpeta <code>src/pages/</code> (por ejemplo: <code>src/pages/api/juegos.js</code>), Astro lo convierte automáticamente en un endpoint de backend.</p>
+  <p>Gracias a los Endpoints podemos conectarnos a bases de datos de <code>SQL Server</code>, <code>MySQL</code> o <code>MongoDB</code>, hacer consultas y devolver un archivo <code>JSON</code> puro. Tu propio <code>front-end</code> puede hacer un <code>fetch()</code> a esa ruta para pintar los datos dinámicamente.</p>
+
+  <p>Ejemplo:</p>
+
+<pre><code class="languaje-javascript">
+// Ejemplo de un endpoint nativo de la API de Astro (src/pages/api/data.js)
+export async function GET({ request }) {
+  return new Response(
+    JSON.stringify({ mensaje: "¡Hola desde la API interna de Astro!" }),
+    { status: 200, headers: { "Content-Type": "application/json" } }
+  );
+}
+</code></pre>
+
+  </main>
+</body>
+</html>

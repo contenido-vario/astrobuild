@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es-Es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Astro</title>
+
+
+  <style>
+    body {
+      width: 80%;
+      margin: 0 auto;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+    <header></header>
+    <main>
+      <h1>Astro</h1>
+      <h2>Ventajas de Astro</h2>
+      <p>Astro cuenta con las siguientes ventajas sobre otros Frameworks de JS:</p>
+      <ul class="disco">
+        <li>Sencillez de su código</li>
+        <li>La rapidez</li>
+        <li>Funciona tanto solo, como integrar otros frameworks de JS</li>
+        <li>Variedad de Plantillas</li>
+      </ul>
+      <h2>Creando un proyecto con Astro</h2>
+      <p>Necesitamos instalado en la máquina <strong>node.js</strong></p>
+      <p>Para crear un proyecto nuevo en astro, entramos en la carpeta superior que contendrá la carpeta del proyecto, y ejecutamos el siguiente comando con la terminal (cmder): <code>pnpm create astro@lastest</code></p>
+      <p>Al lanzar el comando y una vez instalado lo necesario, Astro nos hará las siguientes preguntas:</p>
+      <ol>
+        <li><p>¿Dónde quieres crear tu aplicación? (Where should we create your new project)? Ejemplo: <strong>aprendiendoastro</strong></p></li>
+        <li><p>Luego, te preguntará cómo quieres comenzar el proyecto (How would you like to start your new project?) con las siguientes opciones para que elijas:</p>
+          <ul>
+            <li>&gt; Include sample files (incluye archivos de ejemplo)</li>
+            <li>- Use blog template (usa una plantilla de blog)</li>
+            <li>- Empty (proyecto vacío). Elije este tercer punto</li>
+          </ul>
+        </li>
+        <li><p>A continuación preguntará si se desea instalar las dependencias (Install dependencies?). Selecciona Yes (Sí)</p>
+        </li>
+        <li><p>Luego pregunta si deseas programar en TypeScript [JS tipado] (Do you plan to write TypeScript?) En este caso, selecciona No.</p></li>
+        <li><p>A la pregunta de si deseas inicializar un repositorio de github (Initialize a new git repository?) Responde No.</p></li>
+      </ol>
+      <p>Una vez terminado el proceso, podremos abrir el proyecto con Visual Studio Code en la carpeta en la cual creamos el mismo en el Punto 1:  <strong>(aprendiendoastro)</strong></p>
+      <p>Al abrir la carpeta verás la siguiente estructura en VSCODE</p>
+      <ul>
+        <li>&gt; .vscode</li>
+        <li>&gt; node modules: Donde se instalan los módulos del proyecto</li>
+        <li>&gt; public: Aquí guardaremos los archivos públicos de la aplicación (en este caso los assetsvan acá)</li>
+        <li>&gt; src: En src vamos a tener el directorio de páginas (pages) del proyecto. Su extensión es .astro</li>
+        <li>.gitignore</li>
+        <li>astroconfig.mjs: Archivo de configuración de Astro</li>
+        <li>package-lock.json</li>
+        <li>package.json: Manejar las dependencias del proyecto</li>
+        <li>README.md: </li>
+        <li>tsconfig.json: fichero de configuración de TypeScript (Astro internamente lo usa)</li>
+      </ul>
+      <p>Instalaremos la extensión <strong>Astro</strong> de Visual Studio Code, para colorear el código de Astro.</p>
+      <h3>Inicializar el proyecto de desarrollo</h3>
+      <p>Ejecutamos <code>pnpm run dev</code>. Esto nos permitirá abrir un servidor en el navegador. </p>
+      <h2>Componentes</h2>
+      <p>Los componentes son como piezas de un puzzle que nos ayudan a reutilizar código de nuestra interfaz. En vez de tener todo el código en un archivo, se crean componentes que ayudan tanto a organizar el código como a hacerlo reutilizable.</p>
+      <p>Para guardar los componentes de la aplicación, se crea un directorio dentro de la carpeta <code>src</code> al cual llamaremos <code>components</code>. Los nombres de los archivos de <b>componentes</b> (archivos en src/components), así como los de los <b>Layouts</b> que se verán más adelante, se nombran con la primera letra de cada palabra en mayúscula (UpperCamelCase).</p>
+      <p>Vamos a crear un post para un blog. Para ello creamos un archivo al cual llamaremos <code>Post.astro</code>.</p>
+      <p>Los archivos <code>.astro</code> tienen una estructura un poco diferente a los de <code>.html</code>.</p>
+      <p>Los archivos <code>.astro</code> tienen una sección llamada <b>frontmatter</b> (la sección entre ---) en la parte superior de los mismos. El frontmatter se utiliza principalmente para definir metadatos y configuraciones específicas de cada archivo, especialmente importaciones, contenido Markdown, MDX o páginas <code>.astro</code></p>
+
+      <p>En la parte inferior del <code>frontmatter</code>, escribimos el cuerpo del componente utilizando las etiquetas <code>.html</code> que ya conocemos. Ejemplo:</p>
+
+      <script src="https://gist.github.com/contenido-vario/f5b12e843f90e257cb0a632385613290.js?file=Post.astro"></script>
+
+      <p>Para importar el componente a una página de Astro, usamos <code>import</code> de la siguiente manera:</p>
+
+      <script src="https://gist.github.com/contenido-vario/f5b12e843f90e257cb0a632385613290.js?file=index.astro"></script>
+
+
+      <h3>Agregando Tailwind al proyecto con <b>pnpm</b></h3>
+      <p>Para agregar Tailwind al proyecto se ejecuta desde la terminal: <code>pnpm astro add tailwind</code>.</p>
+      <p>El asistente pedirá confirmación tanto para instalar tailwindcss como su archivo de configuración. Responde <b>Y</b> y presiona <code>Enter</code>. Esto instalará <code>@astrojs/tailwind</code> y <code>tailwindcss</code>, y actualizará el archivo <code>astro.config.mjs</code>.</p>
+
+
+      <h2>Layouts</li>
+      <h2>Páginas</h2>
+      <h2>Modos de renderizado</h2>
+      <h2>Páginas dinámicas</h2>
+      <h2>Markdown</h2>
+      <h2>Islas</h2>
+      <h2>ViewTransitions</h2>
+    </main>
+    <footer>
+      <p>
+        <small>
+          <a href="https://www.youtube.com/watch?v=FafJOvhnGos&t=1734s" target="_blank" rel="noopener noreferrer">2023 -
+            Manu Martin</a> 
+          <a href="https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbU1Db1VnZWhEcWJKXzNxRVF2bmhKUWpfME90Z3xBQ3Jtc0tuQWcyVFdERmlzTE82WHJaUmZVcFJLbk9GbUVGNGpSVzRnWjJ0cVVwcER2MzFBWmt5VnE5ajhwa0VCNFo2aE4wZEgwWlhHaTNDdUhQeXNEb01sWmR5RkpoR2pHaV9hOFNCZEhVLUZ2RzFvbmswRzAwTQ&q=https%3A%2F%2Fdiscord.gg%2FPNbAVUCPB4&v=FafJOvhnGos" target="_blank" rel="noopener noreferrer">Discord</a>
+          <a href="https://github.com/manumrtf/curso-astro/" target="_blank" rel="noopener noreferrer">Github</a>
+        </small>
+      </p>
+    </footer>
+  </div>
+</body>
+
+</html>

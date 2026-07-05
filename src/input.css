@@ -1,0 +1,91 @@
+/* ============================================================
+   CARGA DEL FRAMEWORK
+   Usando el CLI de Tailwind 
+   ============================================================= */
+@import "tailwindcss";
+@import "./nord.css";
+
+/* ==========================================================================
+   1. DECLARACIÓN DE FUENTES (Rutas corregidas saliendo de /dist con ../)
+   ========================================================================== */
+@font-face {
+  font-family: 'Inclusive Sans';
+  src: url('../fonts/InclusiveSans-VariableFont_wght.ttf') format('truetype');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inclusive Sans';
+  src: url('../fonts/InclusiveSans-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* =============================================================
+   2. CONFIGURACIÓN DEL TEMA (Tailwind v4 puro)
+   ============================================================= */
+@theme {
+  --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-brand: #ff4500;
+}
+
+/* ===============================================================
+   3. SECCIÓN DE LAYOUTS (Estilos base nativos)
+   =============================================================== */
+body { @apply text-sm;}
+p { @apply mb-2 leading-relaxed text-gray-700;}
+a { @apply text-blue-600 underline underline-offset-3;}
+menu { @apply ml-4 mb-4 text-sm;}
+
+/* Estilos de los títulos (Ahora aplicarán el blanco correctamente) */
+h1,
+h2 { @apply font-serif font-bold text-white mb-6; }
+h3 { @apply text-cyan-600 text-lg mb-2;}
+h4 { @apply font-bold my-2;}
+h4>a { @apply underline-offset-3; }
+
+article {
+  @apply p-4 border border-cyan-600 rounded-lg hover:shadow-md transition text-base bg-white;
+}
+
+summary { @apply font-semibold mb-1;}
+
+ul, ol { @apply list-outside ms-6 space-y-1 mb-3 }
+ol { @apply list-decimal }
+
+ul li, ol li { @apply ps-2 mb-1 text-sm; }
+
+img  { @apply inline mr-1; }
+code { @apply text-sky-700 }
+i { @apply not-italic text-pink-800}
+figure {@apply my-8}
+figcaption {@apply text-xs my-6}
+
+/* =============================================================
+   4. COMPONENTES Y CLASES PERSONALIZADAS 
+   ============================================================= */
+h1.det {
+  @apply text-2xl text-cyan-800
+}
+
+ul.arrow { 
+  @apply list-['‣'] list-outside ms-6 space-y-1 mb-3 marker:text-cyan-600;
+}
+ul.dash { 
+  @apply list-['☆'] list-outside ms-6 space-y-1 mb-3 marker:text-cyan-600; 
+}
+
+li.juegos::before {
+  content: url('../icons/toys.svg');
+  /* Ruta corregida con ../ */
+  font-size: 0.8rem;
+  margin-right: 8px;
+}
+
+
+pre>code.hljs {
+  @apply font-mono rounded-lg my-3 shadow-inner text-sm overflow-x-auto;
+}

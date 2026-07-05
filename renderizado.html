@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./img/rt.ico" type="image/x-ico">
+  <title>Astro</title>
+
+  <!-- Cargar el archivo CSS de distribución -->
+  <link rel="stylesheet" href="./dist/output.css">
+
+  <script src="./js/highlight-setup.js" defer></script>
+</head>
+
+<body class="bg-stone-100 leading-normal tracking-normal">
+  <main class="container mx-auto mt-3 px-6 pt-1 pb-6">
+  <h1 class="det">Modos de renderizado</h1>
+
+  Astro tiene diversas formas para renderizar nuestras páginas.
+  1.	Pre-renderizado en el momento de la compilación (por defecto)
+  2.	Renderizado bajo demanda por el servidor 
+
+  Pre-renderizado en el momento de la compilación (Static Site Generation -SSG)
+
+  En este método (pre-rendered o o static), si se da el caso que el contenido se genera a través de una petición a una base de datos, al momento de compilar la aplicación para construirla y subirla a un hosting se hace la petición a la base de datos para conseguir todos los datos y se generaría una página con el contenido estático de la Base de Datos al momento de compilar (en nuestro caso los post). Cuando el usuario accede, ya la información está lista al instante. Esto tiene una clara ventaja que es la velocidad y tiene otra desventaja: como el contenido ya está renderizado, toda actualización en nuestra base de datos el usuario no la va a ver porque el contenido que está viendo es el que había en el momento del compilado.
+  Esta es la mejor opción si lo que se desea es generar páginas estáticas a partir de información contenida en una Base de Datos.
+
+  Renderizado en el servidor (Server Side Rendering - SSR)
+
+  Es para aplicaciones web que necesitan o que tienen un contenido altamente dinámico que tiene que actualizarse al momento. Esto hace el proceso clásico: un usuario hace una petición y si la página lo necesita traslada la petición a la base de datos. En este caso habría que esperar a que se haga esa petición y que se construya la página en función a esos datos. Tendremos como ventaja el poder acceder a la información de la petición ya que la página se está construyendo en el servidor por cada petición. 
+
+  Evidentemente, este método no sería tan rápido como el anterior, ya que tenemos que pasar por el proceso de hacer la petición a la base de datos, traernos los datos y generar la página en función a ellos. Por lo tanto, utilizar uno u otro método depende de lo que se necesite. 
+
+  La Opción Híbrida
+
+  Astro permite utilizar la opción híbrida que es para sitios webs que tienen una mayoría de páginas estáticas (que no necesitan actualizarse de forma frecuente), pero que tene algunas páginas en concreto que sí necesitan actualizarse de forma de forma frecuente. En este caso, tendríamos una mezcla de las dos.
+
+  Establecer el tipo de renderización
+
+  Las opciones de renderización se establecen en el archivo astro.config.mjs.
+  En el archivo, se debería agregar una opción llamada output dentro de la sección export default defineConfig. Al escribir output: ‘’ podemos apreciar cómo Astro nos brinda las tres opciones: hybrid, server y static. A continuación podemos ver un ejemplo del astro.config.mjs.
+
+  export default defineConfig({
+    output: ‘hybrid’,
+    integrations: [tailwind()]
+  });
+  
+  Si seleccionamos la opción híbrida (hybrid) tendríamos que especificar página a página cómo quiero el renderizado. 
+  -	Páginas estáticas (por ejemplo about.astro)
+  Se coloca en su frontmatter la siguiente instrucción: export const prerender=true;
+  -	Páginas renderidadas en servidor (por ejemplo index.astro)
+  Se coloca en su frontmatter la siguiente instrucción: export const prerender=false;
+
+  Si la mayoría de las páginas van a ser estáticas pero hay alguna que necesita ser renderizada en el
+  Servidor, se deja la opción mayoritaria por defecto en el astro.config.mjs y a la página que se desee 
+  renderizar el servidor se le exporta la constante prerender con el valor false.
+
+  </main>
+</body>
+</html>

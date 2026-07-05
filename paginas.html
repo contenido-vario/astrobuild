@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./img/rt.ico" type="image/x-ico">
+  <title>Astro</title>
+
+  <!-- Cargar el archivo CSS de distribución -->
+  <link rel="stylesheet" href="./dist/output.css">
+
+  <script src="./js/highlight-setup.js" defer></script>
+</head>
+
+<body class="bg-stone-100 leading-normal tracking-normal">
+  <main class="container mx-auto mt-3 px-6 pt-1 pb-6">
+  <h1 class="det">Páginas y enrutamiento</h1>
+
+  Las páginas en Astro utilizan un sistema conocido como file based routing o enrutamiento basado en archivos. 
+
+  Para crear una nueva página en Astro se crea un nuevo archivo en la carpeta pages, y se les da el nombre que se desee en minúsculas y con extensión .astro. 
+  Creamos por ejemplo una página about.astro en la misma carpeta donde se encuentre index.astro.
+
+  Copia el contenido de la página del siguiente ejemplo:
+
+  ---
+  #importamos el LayoutDefault para la estructura del archivo
+  import DefaultLayout from "../layouts/DefaultLayout.astro";
+  ---
+  <DefaultLayout>
+    <title slot=”titulo”>Acerca de…</title>
+
+    <h1 class="text-center text-3xl font-bold mb-6 mt-3">
+    Acerca de AstroBlog
+    </h1>
+    <p class=”text-base my-4>Bienvenido a nuestro blog. Espero disfrutes de los diferentes artículos que te ofrecemos.</p>
+  </DefaultLayout>
+
+  Modificamos en el DefaultLayout la barra de navegación y indicando en el enlace cuyo título es About que nos lleve a nuestra página de about.astro. 
+
+  <a href="/about" class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">About</a>
+
+  ¿Qué pasa si intentamos acceder a una ruta que no existe? Que ya por defecto Astro nos va a mostrar una página llamada 404 que tiene previamente personalizada. Si tú quieres crear tu propia página de 404 deberías crear un nuevo archivo y llamarlo 404.astro y luego crear tu página 404 personalizada, la cual incluso puede utilizar un Layout.
+
+
+
+
+  </main>
+</body>
+</html>

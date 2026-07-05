@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./img/rt.ico" type="image/x-ico">
+  <title>Astro</title>
+
+  <!-- Cargar el archivo CSS de distribución -->
+  <link rel="stylesheet" href="./dist/output.css">
+
+  <script src="./js/highlight-setup.js" defer></script>
+</head>
+
+<body class="bg-stone-100 leading-normal tracking-normal">
+  <main class="container mx-auto mt-3 px-6 pt-1 pb-6">
+  <h1 class="det">¿Qué son las Islas?</h1>
+Astro puede ser utilizado con cualquier framework de componentes que tú ya conozcas vale como react PR View solid alpin muchos vale me
+parece que angular por ejemplo no está porque angular es un poco más especialito pero aquí tienen mucho
+entonces Si no te gusta la forma de crear componentes de y tú quieres utilizar real tú quieres utilizar View
+porque ya está acostumbrado a ello y por las ventajas que te puedan ofrecer pues
+simplemente en una nueva terminal tendríamos que ejecutar npx Astro ad
+igual que hemos hecho conta el Win pero en este caso voy a decir que quiero Añadir
+react y esto empezar a instalar todo lo necesario vo a decir que sí que instal
+las dependencia es decir que sí modifique el archivo de configuración Sí todo vale
+entonces ahora es tan fácil cóm crear un nuevo componente y como si estuviésemos
+utilizando re pued crear un componente por ejemplo llamado
+botón y le voy a poner extensión jsx que es la extensión de
+react y ya sabemos la síntesis de react para crear un un componente damos una
+función con el nombre del componente y la función devolvía el
+elemento y esto lo podemos importar en cualquier página por ejemplo en la
+página de abot yo puedo importar el componente
+Button y renderizar lo como un componente normal y lo puedo mezclar yo
+con componentes de View de incluso puedo tener componentes de View componentes de react y componentes de Astro en el mismo
+proyecto sin problema y ahora si voy a la página de abot ves tengo aquí el botón que dice Hola Hazme click vamos a
+añadirle interactividad a esto vamos a poner un on click y le vamos a pasar una
+función que diga Hazme o Gracias por dar
+click vamos a ver qué pasa ahora vamos a recargar le a dar Hazme
+click Hazme clic y en la consola no está pasando nada vamos a probar hacer una
+alerta que diga gracias a ver si la alerta funciona A ver por qué está
+pasando esto nada la alerta tampoco funciona y eso porque asro por defecto
+no añade interactividad a los componentes Para qué para no tener que enviar javascript innecesario al
+navegador dado que el javascript que manda pues es algo que ralentiza bastante una web Entonces lo mejor es
+mandar el mínimo javascrip necesario así que por defecto no manda nada pero claro
+perdemos la interactividad si yo necesito que mi componente sea interactivo hay una manera de
+solucionarlo y es pasándole esta opción de aquí de client al componente Pero hay
+distintos modos los cual pue cargar el javascript por ejemplo client visible
+que cuando el componente entra en el viewport es decir cuando está visible solamente se va a volver interactivo
+cuando entra en la página es decir mientras no esté visible no tiene por qué cargar el javascript si ponemos load
+Pues cuando carga la página Aunque el elemento no se vea ya lo va a cargar el cl invisible es una buena opción porque
+para qué quiero que tenga interactividad mientras el componente no se vea por lo tanto no van poder interactuar con él
+así que voy a ir a vot y a mi componente le voy a decir esto que dice aquí
+client y le voy a pasar visible y Esto va a hacer que cuando le
+haga clic va a decir gracias Ya va a funcionar la alerta y Fíjate que cuando vamos al menú que os decía al principio
+que te muestra si tienes islas de Astro ya nos aparece este cliente como una isla Entonces ya hemos visto lo que es
+una isla que es una isla dentro del astro para que te lo dice es cualquier componente de nuestra página que tenga
+interactividad Entonces el html es componente se renderiza en el servidor y después su
+lógica su javascript se carga cuando nosotros le digamos con la directiva client Pues eso simplemente es una isla
+dentro de Astro es un componente que tiene interactividad 
+
+  </main>
+</body>
+</html>

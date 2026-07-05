@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Vigilar Tailwind v4",
+      "type": "shell",
+      "command": "${workspaceFolder}/tailwindcss",
+      "args": [
+        "-i",
+        "./src/input.css",
+        "-o",
+        "./dist/output.css",
+        "--watch"
+      ],
+      "group": "none",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    }
+  ]
+}

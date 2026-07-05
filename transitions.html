@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./img/rt.ico" type="image/x-ico">
+  <title>Astro</title>
+
+  <!-- Cargar el archivo CSS de distribución -->
+  <link rel="stylesheet" href="./dist/output.css">
+
+  <script src="./js/highlight-setup.js" defer></script>
+</head>
+
+<body class="bg-stone-100 leading-normal tracking-normal">
+  <main class="container mx-auto mt-3 px-6 pt-1 pb-6">
+    <h1 class="det">Transiciones e iteraciones visuales</h1>
+
+    <p><strong>View Transitions</strong> es la herramienta visual de <i>Astro</i> para crear animaciones fluidas y
+      mantener elementos vivos entre páginas sin recargar el navegador, dando la sensación de que el usuario está
+      navegando en una aplicación móvil o una Single Page Application (SPA) súper rápida, aunque por detrás sigan siendo
+      páginas HTML independientes.</p>
+
+    <p>Con las <strong>View Transitions</strong> activadas, <i>Astro</i> intercepta el clic a un enlace, descarga la
+      nueva página en segundo plano, compara ambas páginas y anima el cambio (por ejemplo, haciendo un desvanecimiento
+      suave o <code>fade</code>).</p>
+
+    <h3>Hero Transitions</h3>
+    <p>Las <strong>Hero Transitions</strong> permiten la animación de elementos compartidos entre dos páginas. Ejemplo:Si se tiene una imagen de un gatito en una tarjeta pequeña en el <code>index.html</code> y se entra a ver eldetalle de la tarjeta en otra página, se puedes hacer que esa misma imagen <em>vuele</em> y se agrande suavemente hasta su nueva posición en la segunda página. Solo se necesita poner el mismo nombre:
+      <code>transition:name="mi-gatito"</code>.</p>
+
+    <h3>Persistencia de Estado</h3>
+    <p>La Persistencia del estado (<code>transition:persist</code>), permite mantener en memoria un archivo multimedia que se esté reproduciendo al cambiar de página. El elemento con persistencia de estado, no se recarga ni se corta. Ejemplo: la música sigue sonando mientras la página cambia.</p>
+
+    <h3>Control de Dirección (fallback y animaciones direccionales)</h3>
+
+    <p><i>Astro</i> hace por defecto un desvanecimiento (<code>fade</code>), pero se pueden crear animaciones que
+      entiendan hacia dónde va el usuario.</p>
+
+    <p>Si se tiene una lista de ejercicios y el usuario hace clic en <code>Siguiente</code>, se puede hacer que la nueva
+      página entre deslizándose desde la derecha. Si pulsa el botón <code>Atrás</code> del navegador, Astro detecta la
+      dirección y hace que la página anterior vuelva deslizándose desde la izquierda.</p>
+
+    <p>Esto se logra con la directiva <code>transition:animate="slide"</code>. El navegador entiende el historial de
+      navegación y adapta el movimiento automáticamente.</p>
+
+    <h3>Animaciones Completamente Personalizadas (Custom Animations)</h3>
+    <p>Además de los movimientos por defecto (<code>fade</code>, <code>slide</code> o <code>none</code>), se pueden
+      definir animaciones personalizadas usando CSS nativo o propiedades de <code>JavaScript</code> y empaquetarlas en
+      un objeto para que <i>Astro</i> las ejecute.
+    </p>
+    <p>Se pueden definir cosas como:</p>
+
+    <pre><code class="languaje-javascript">
+const miAnimacionPersonalizada = {
+  old: { name: 'unblur', duration: '0.3s', easing: 'ease-out' },
+  new: { name: 'blur', duration: '0.3s', easing: 'ease-in' }
+};
+</code></pre>
+
+    <p>Esto permite, por ejemplo, que la página vieja se desenfoque poco a poco mientras la nueva aparece nítida desde
+      el fondo.</p>
+
+    <h3>Eventos del Ciclo de Vida</h3>
+
+    <p>Cuando se usa <strong>View Transitions</strong>, la página nunca se recarga de verdad, lo que significa que el
+      clásico evento de JavaScript <code>document.addEventListener('DOMContentLoaded', ...)</code> solo se ejecuta la
+      primera vez que se entra a la web.</p>
+
+    <p>Si se cambia de página, los scripts (como por ejemplo los contadores) dejarían de funcionar. Para solucionar
+      esto, la API de View Transitions de <i>Astro</i> ofrece un ciclo de vida con eventos especiales:</p>
+
+    <ul class="arrow">
+      <li><code>astro:before-preparation</code>: Se ejecuta justo cuando se hace clic en un enlace, antes de que Astro
+        descargue la siguiente página (ideal para poner una pantalla de carga o un spinner).</li>
+
+      <li><code>astro:after-swap</code>: Se ejecuta en el milisegundo en que la página nueva reemplaza a la vieja.</li>
+
+      <li><code>astro:page-load</code>: Reemplaza por completo a <code>DOMContentLoaded</code>. Se ejecuta cada vez que
+        una página termina de cargar, ya sea la primera vez o tras una transición.</li>
+    </ul>
+
+    <h3>Navegación Programática (Hacer transiciones con código)</h3>
+
+    <p><i>Astro</i> permite disparar una transición de página fluida desde un código <code>JavaScript</code> usando el método
+      <code>Maps()</code>.</p>
+
+    <p>Esto permite que al llenar un formulario y, tras validar que los datos en la base de datos de SQL son correctos,
+      se quiera redirigir al usuario a una página de éxito de forma fluida:</p>
+
+    <pre><code class="languaje=javascript">
+ import { navigate } from 'astro:transitions/client';
+
+ // Redirigir de forma animada mediante código
+ navigate('/ejercicios/exito');
+</code></pre>
+
+  </main>
+</body>
+
+</html>

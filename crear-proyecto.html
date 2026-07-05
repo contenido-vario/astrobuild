@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./img/rt.ico" type="image/x-ico">
+  <title>Astro</title>
+
+  <!-- Cargar el archivo CSS de distribución -->
+  <link rel="stylesheet" href="./dist/output.css">
+
+  <script src="./js/highlight-setup.js" defer></script>
+</head>
+
+<body class="bg-stone-100 leading-normal tracking-normal">
+  <main class="container mx-auto mt-3 px-6 pt-1 pb-6">
+  <h1 class="det">Crear un proyecto con Astro.build</h1>
+
+    <section> <!-- Ventajas de Astro -->
+      <h3>Ventajas de Astro</h3>
+      <p>Astro cuenta con las siguientes ventajas sobre otros frameworks de JavaScript:</p>
+      <ul class="arrow">
+        <li>Sencillez de su código</li>
+        <li>Su rapidez.</li>
+        <li>Funciona tanto solo, como integrando otros frameworks de JS</li>
+        <li>Tiene variedad de plantillas</li>
+      </ul>
+    </section>
+
+    <section> <!-- Creando un proyecto con Astro -->
+      <h3>Creando un proyecto con <i>Astro</i></h3>
+      <p>Necesitamos tener instalado en el ordenador, <code>Node.js</code></p>
+      <p>Para crear un proyecto nuevo en <i>Astro</i>, entramos en la carpeta superior que contendrá la carpeta del
+        proyecto, y ejecutamos el siguiente comando con la terminal (cmder):</p>
+      <pre><code>pnpm create astro@lastest</code></pre>
+      <p>Al lanzar el comando y una vez instalado lo necesario, <i>Astro</i> nos hará las siguientes preguntas:</p>
+      <ol>
+        <li>
+          <p>¿Dónde quieres crear tu aplicación?
+            (<code>Where should we create your new project?</code>)<br>
+            Responde: <strong id="n1">aprendiendoastro</strong></p>
+        </li>
+        <li>
+          <p>¿Cómo quieres comenzar el proyecto?
+            (<code>How would you like to start your new project?</code> )<br>
+            Elige una de las siguientes opciones:</p>
+          <ul>
+            <li>&gt; <code>Include sample files</code> (incluye archivos de ejemplo)</li>
+            <li>- <code>Use blog template</code> (usa una plantilla de blog)</li>
+            <li>- <code>Empty</code> (proyecto vacío). <strong>Elije este tercer punto</strong></li>
+          </ul>
+        </li>
+        <li>
+          <p>¿Deseas instalar dependencias? (<code>Install dependencies?</code>)<br> Selecciona <code>Yes</code>
+            (<strong>Sí</strong>)
+          </p>
+        </li>
+        <li>
+          <p>¿Deseas programar en TypeScript - JS tipado?
+            (<code>Do you plan to write TypeScript?</code>)
+            Selecciona <strong>No</strong>.</p>
+        </li>
+        <li>
+          <p>Deseas inicializar un repositorio de GitHub? (<code>Initialize a new git repository?</code>)<br>Responde
+            <strong>No</strong>.</p>
+        </li>
+      </ol>
+      <p>Una vez terminado el proceso, podremos abrir el proyecto con <code>Visual Studio Code</code> en la carpeta en la cual
+        creamos el mismo en el <a href="#n1">Punto 1</a>: <strong>(aprendiendoastro)</strong></p>
+      <p>Al abrir la carpeta verás la estructura inicial de un proyecto de <i>Astro</i> en <code>vscode</code></p>
+      <figure>
+        <img src="./img/carpetas.png" alt="carpetas">
+        <figcaption>Estructura inicial de un proyecto de Astro</figcaption>
+      </figure>
+      <p>Finalmente, instalaremos <strong>la extensión Astro</strong> de <code>Visual Studio Code</code>, para colorear
+        el código de <i>Astro</i>.</p>
+    </section>
+
+    <section> <!-- Inicializar el proyecto de desarrollo -->
+      <h3>Inicializar el proyecto de desarrollo</h3>
+      <p>Ejecutamos en la terminal:</p>
+      <pre><code>pnpm run dev</code></pre>
+      <p>Esto nos permitirá abrir un servidor en el navegador.</p>
+    </section>
+  </main>
+</body>
+
+</html>

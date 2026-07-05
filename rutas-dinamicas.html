@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./img/rt.ico" type="image/x-ico">
+  <title>Astro</title>
+
+  <!-- Cargar el archivo CSS de distribución -->
+  <link rel="stylesheet" href="./dist/output.css">
+
+  <script src="./js/highlight-setup.js" defer></script>
+</head>
+
+<body class="bg-stone-100 leading-normal tracking-normal">
+  <main class="container mx-auto mt-3 px-6 pt-1 pb-6">
+  <h1 class="det">Rutas Dinámicas</h1>
+
+  Hay veces que se necesita tener rutas de varios niveles. Un ejemplo lo tenemos en el blog. Necesitamos que al hacer clic en una tarjeta, Astro me lleve a una página donde se muestre el contenido del post entero. Para ello la ruta sería algo como /posts/1. (el post en concreto que tenga el id = 1).
+
+Si nos fijamos no es una página como la de about que está al mismo nivel de las otras, sino que es necesario tener dos niveles:  posts/ y dentro de posts el archivo del post. 
+
+En este caso lo que necesitamos se conoce como ruta
+dinámicas para poner una ruta dinámica vamos a crearla y vamos a ponerle un
+identificador al sector o al segmento que va a ser Dinámico en este caso como
+quiero identificar cada post por un ID le voy a poner de nombre ID vale este va a ser el segmento que voy a utilizar
+para identificarlo y ahora le pongo su extensión punto
+Astro y ahora aquí lo que puedo hacer por ejemplo es importar mi layout que es
+el que vamos a utilizar en todas las páginas vamos a importar le habíamos
+llamado default layout le voy a poner default
+layout y aquí dentro voy a mostrar por ejemplo estás en la página
+un si intentamos acceder a esa ruta post un por ejemplo nos va a dar un error que
+va a decir get static pad function required para ruta dinámica esto Qué significa significa que cuando
+utilizamos el modo de renderización en estático sabemos que todas las páginas
+se generan en el momento del compilado entonces para que en el
+compilado pueda saber cuántas página tiene que generar necesitamos utilizar
+una función esto no pasa si utilizamos el modelo de renderizado en el servidor
+porque entonces únicamente recibiríamos ese número ese ID del post
+y haríamos una petición a la base de datos y traíamos el contenido pero como el contenido se va a generar durante el
+compilado y cuando el usuario aceda ya va a estar listo pues Astro tiene que saber cuántas páginas tiene que generar
+en este caso tiene que generar una por cada post pues tenemos que decirle Cuántos post tenemos y Cuál es la
+información de cada uno de ellos que tiene que Mostrar así que bueno nos queda claro lo que necesitamos tenemos
+que exportar una función que la vamos a hacer asíncrona para poder utilizar a we dentro y la vamos a llamar get static
+pads lo primero que para saber cuántos post tenemos tenemos que hacer una
+petición a nuestra base de datos Entonces como esto ya lo hacíamos en la página principal voy a reutilizar el
+código que hacíamos para traer los distintos post Y ahora cuál es la
+sintaxis que tiene que tener esta función Pues aquí nos dice que por cada uno vale por cada uno de nuestros
+elementos en este caso por cada uno de nuestros post dentro de una aray tenemos que devolver un objeto con la propiedad
+params y el nombre de la propiedad que utilizamos para identificarlo que es el nombre que le hemos puesto a este
+segmento Dinámico el ID entonces sabemos que tenemos que devolver un objeto por
+cada uno de mis post Así que lo que voy a hacer es un map voy a recibir los post
+y por cada uno de ellos voy a devolver un objeto que ponga para
+y tenga una propiedad que en este caso es ID que va a equivaler al ID del post
+y ahora este array que se genera con el map es el que tengo que devolver de mi
+función y ahora vamos a ver que va a funcionar dice estás en la página uno lo que pasa que si yo accedo a la página
+dos también voy a decir esta es la página un porque es algo que yo he escrito de forma estática lo que podemos
+acceder lo que podemos hacer es acceder a ese parámetro que me están mandando en este caso
+Sid para ello voy a hacer un destructuring del objeto de Astro params
+y aquí voy a sacar el ID es lo que estoy utilizando y lo que le estoy pasando a la función de get static pads y ahora
+voy a hacer esta en la página
+ID esto Perdón lo tenemos que sacar fuera de la función aquí para que podamos
+acceder y ahora sí como vemos l vamos a la do dice a la dos si vamos a la uno dice estamos en la página uno y ahora
+como tenemos acceso al post que me están mandando puedo hacer una petición para
+obtener la información de ese poste en concreto por ejemplo podemos hacer lo
+siguiente vamos a poner post response vamos a hacer una petición de
+red y en vez de a todos los post vamos a
+indicar A qué post quiero hacerlo que en este caso es al que tiene este ID de
+aquí y ahora de nuevo haríamos el post sería el post
+response convertido a Jason y ahora tengo acceso a este post
+en concreto y podría decir está en la página ID del post y acceder a la
+información por ejemplo del post title Y fíjate dice estarse la página uno del
+post de benefits of mindfulness meditation si yo vo al dos pues se va a mostrar el título del dos si yo vo al
+tres se va a mostrar el título del tres y yo puedo ya aquí crear la página del post y ya lo único que nos faltaría
+sería actualizar nuestro componente de post para que tenga un enlace que al
+hacer clic me lleve a la página de ese post y para ello vamos a ir al componente de post y lo vamos a envolver
+todo dentro de un enlace voy a cortar todo esto lo voy a
+poner dentro de una etiqueta de enlace Y a dónde te va a llevar este enlace primero voy a sacar de los props el ID y
+ahora el href esto como le necesitamos pasar variable les necesito pasar las llaves
+para decir que vamos a poner el código javascript y la ruta va a ser barra post
+barra y el ID del post en concreto y ya de esta manera pues si yo hago clic aquí
+como vemos dice que estás en en el post exploring The Wall of astrophysics y así y así lo mismo ahora lo que yo quiero
+mostrar evidentemente Pues sería contenido con su imagen su título todo
+eso y voy reutilizar gran parte de lo que ya estoy utilizando aquí en mi en mi
+post voy a reutilizar gran parte de este contenido Solo que le voy a hacer un par
+de modificaciones vale vamos a pegar esto por aquí y lo vamos a meter
+dentro de un di por ejemplo vale Y ahora voy a hacer un
+destructuring de las propiedades para no tener que hacer post pun title post pun description y todo eso entonces aquí
+podría hacer directamente title
+description También estamos utilizando el content y por aquí teníamos también el
+created Entonces ya accedemos si tenemos estos estilo evidentemente Esto no es lo que queremos que se vea así porque ahora
+queremos que se vea todo completo así que vamos a hacer unas modificaciones en los estilos primero que nada le voy a
+quitar este fondo voy a poner el texto en
+negro y le voy a quitar Ya esta clase con este color a los
+párrafos no solo eso sino que además aquí no me interesa ni Mostrar la fecha ni nada de eso porque eso ya se ve fuera
+entonces me voy a quedar Únicamente con la imagen la descripción y el contenido
+y el contenido no lo vamos a cortar vamos a mostrar el contenido completo vale est se va apareciendo un poco más a
+lo que queremos nos faltaría únicamente cambiar el tamaño máximo le podemos poner como
+4xl esto ya tiene más sentido y podemos centrarlo dándole un margin a
+los lados de auto vale Y esto ya pues evidentemente se ve mejor Entonces ya podemos acceder a cada
+uno de los post y ver Su contenido completo as que hemos aprendido mucho en esta clase hemos aprendido a hacer rutas
+dinámicas y Cómo conseguir la información para que se puedan genererar todas estas páginas en el caso de que no
+hubiésemos utilizado en el caso de que esta página se render en el servidor pues ya no
+necesitaríamos esta función de get St p vale la podríamos quitar ahora
+evidentemente Esto me va a dar error pero si yo esto lo
+cambio y pongo el prender PR render se
+lo pongo en falso y puedo cambiar la configuración y ponerlo por ejemplo en
+híbrido Y fíjate que esto ya carga perfectamente sin necesitar dado que le
+hemos dicho que lo va a renderizar en el servidor ya no necesita la función de
+get static paths pero en el caso de que esto sí fuera prerender pues entonces vemos que ya
+falla porque ya sí necesita la función de get static pads para funcionar Y es
+pues lo comentado porque cuando lo generamos en el momento de la compilación tenemos que hacerle saber
+todos los post que tenemos para que pueda generar todas las posibles páginas vale porque recuerda que todas las
+páginas las va a generar en el instante que se compila y las va a subir todas Entonces cuando el usuario accede ya
+están todas compiladas y para ello tiene que saber por Cuántas tenemos Y por qué
+las vamos a identificar en este caso por un ID hemos visto que en el caso de que la renderización sea del lado del
+servidor esto no sería necesario otro de los puntos clave de Astro es que es
+
+
+  </main>
+</body>
+</html>

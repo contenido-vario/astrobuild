@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./img/rt.ico" type="image/x-ico">
+  <title>Astro</title>
+
+  <!-- Cargar el archivo CSS de distribución -->
+  <link rel="stylesheet" href="./dist/output.css">
+
+  <script src="./js/highlight-setup.js" defer></script>
+</head>
+
+<body class="bg-stone-100 leading-normal tracking-normal">
+  <main class="container mx-auto mt-3 px-6 pt-1 pb-6">
+  <h1 class="det">Plantillas (Layouts)</h1>
+
+  Los layouts nos ayudan a crear contenido que se va a repetir en todas las páginas o en las páginas que
+nosotros queramos sin tener que volver a hacerlo nosotros a mano, por ejemplo headers, footers, barras de navegación. En realidad un Layout es un tipo de componente estático. 
+
+Para trabajar con layouts, creamos una nueva carpeta en la carpeta src y la llamamos layouts.
+Crearemos un layout que será la estructura por defecto en todas las páginas del proyecto y lo llamaremos, DefaultLayout.astro.
+
+Moveremos allí, todo el contenido de nuesta página index.html, que es la parte de código que queremos que sea reutilizable en todas las páginas, excepto lo que es específico de ella que son los post.
+
+Le agregaremos, asimismo, un <header> y un <main>. Dentro del <header> colocaremos una barra de navegación <nav>. Para no tener que hacer la barra de navegación entera, copiaremos esta barra de navegación de la página de flowbite (https://flowbite.com/docs/components/navbar/)
+
+Definir el layout que usará una página
+
+Si quiero que mi página utilice un Layout, me voy a la página que quiero que lo utilice y lo importo en el Frontmatter. El código específico, del index.html lo coloco dentro del componente Layout. Para ello hago referencia a <DefaultLayout> usando la etiqueta de apertura y de cierre. 
+
+---
+import Post from "../components/Post.astro";
+const response = await fetch("http://localhost:3000/posts");
+const posts = await response.json();
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+---
+<DefaultLayout>
+  <h1 class="text-center text-3xl font-bold mb-6 mt-3">Mis posts</h1>
+  <div
+    class="grid max-w-7xl mx-auto w-full justify-center justify-items-center items-center gap-4 px-2 sm:grid:cols-2 lg:grid-cols-3"
+  >
+    {posts.map((post) => <Post post={post} />)}
+  </div>
+</DefaultLayout>
+
+Como al layout, no le hemos dicho dónde tiene que mostrar el contenido de la página (en nuestro caso los posts), hay que indicarlo en el mismo. En Astro, al espacio que dejamos para el contenido que difiere en el Layout se conoce como un slot (en otros frameworks se llaman children). (Falla con la extensión Prettier)
+
+En nuestro caso, queremos que los post se muestren dentro del <main>.
+
+<!DOCTYPE html>
+<html lang="es-Es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/svg+xml" href="favicon.ico" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content={Astro.generator}>
+  <title>Astro</title>
+</head>
+<body>
+
+<header>  
+  <nav class="bg-neutral-primary fixed w-full z-20 top-0 start-0 border-b border-default">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <img src="https://flowbite.com/docs/images/logo.svg" class="h-7" alt="Flowbite Logo" />
+          <span class="self-center text-xl text-heading font-semibold whitespace-nowrap">Flowbite</span>
+      </a>
+      <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary" aria-controls="navbar-default" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/></svg>
+      </button>
+      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
+          <li>
+            <a href="#" class="block py-2 px-3 text-white bg-brand rounded md:bg-transparent md:text-fg-brand md:p-0" aria-current="page">Home</a>
+          </li>
+          <li>
+            <a href="#" class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">About</a>
+          </li>
+          <li>
+            <a href="#" class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Services</a>
+          </li>
+          <li>
+            <a href="#" class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Pricing</a>
+          </li>
+          <li>
+            <a href="#" class="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+<main>
+  <slot/>
+<main>
+</body>
+<html>
+
+Un paso más allá: named slots y valores por defecto en un slot
+
+Los named slots se utilizan si dentro de un Layout necesito que varias partes (no una como en el caso anterior), varíe. Para llamarlo dentro del Layout uso la sintaxis:
+
+<slot name=”nombre-del-slot”/>
+
+En este caso, debemos darle nombre a los slots que queremos pasar al Layout. Por ejemplo: si quiero que cada página tenga un título diferente en el navegador, puedo crear un slot llamado titulo.
+
+El index.astro quedaría así:
+
+---
+import Post from "../components/Post.astro";
+const response = await fetch("http://localhost:3000/posts");
+const posts = await response.json();
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+---
+<DefaultLayout>
+  <title slot=”titulo”>AstroBlog</title>
+
+  <h1 class="text-center text-3xl font-bold mb-6 mt-3">Mis posts</h1>
+  <div
+    class="grid max-w-7xl mx-auto w-full justify-center justify-items-center items-center gap-4 px-2 sm:grid:cols-2 lg:grid-cols-3"
+  >
+    {posts.map((post) => <Post post={post} />)}
+  </div>
+</DefaultLayout>
+
+Lo que esté dentro de las etiquetas <DefaultLayout></DefaultLayout> se muestra en el slot por defecto (aquel que no tiene nombre). Pero el título se mostrará en el <slot> título.
+
+En el DefaultLayout.astro dentro del <header> se especificaría que Astro renderiza la página con el contenido que tenga el slot cuyo nombre sea título.
+
+<!DOCTYPE html>
+<html lang="es-Es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/svg+xml" href="favicon.ico" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content={Astro.generator}>
+  <slot name=”titulo”>Astro</slot>
+</head>
+...
+
+Astro, mostraría el título que le hayan enviado dentro del slot cuyo nombre sea título. Entre las etiquetas <slot name=”titulo”> y <slot> se puede colocar un valor por defecto en caso de que no se envíe ningún valor.
+
+
+
+
+  </main>
+</body>
+</html>
