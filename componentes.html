@@ -54,8 +54,7 @@
 
     <pre><code class="languaje-html">
   &lt;article&gt;
-    &lt;img src="https://images.pexels.com/photos/67112/pexels-photo-67112.jpeg
-    ?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"&gt;
+    &lt;img src="/img/gato.webp"&gt;
     &lt;h2&gt;The Post Title&lt;/h2&gt;
     &lt;p&gt;A post description&lt;/p&gt;
       &lt;p&gt;
@@ -103,8 +102,7 @@
     <pre><code class="languaje-html">
   &lt;article id="article" class="flex max-w-sm flex-col gap-2 rounded bg-[#1F2937] 
   px-5 py-6 text-white"&gt;
-    &lt;img src="https://images.pexels.com/photos/67112/pexels-photo-67112.jpeg
-    ?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="rounded"&gt;
+    &lt;img src="/img/gato.webp"&gt;
     &lt;h2 class="text-2xl font-bold"&gt;The Post Title&lt;/h2&gt;
     &lt;p&gt;A post description&lt;/p&gt;
     &lt;p class="text-zinc-300"&gt;
@@ -157,7 +155,7 @@
         <p>Y en el html de <code>Post.astro</code>:</p>
         <pre><code class="languaje-html">
 &lt;article&gt;
-  &lt;img src="…" class="rounded"&gt;
+  &lt;img src="/img/gato.webp" class="rounded..."&gt;
   &lt;h2 class="text-2xl font-bold">{title}&lt;/h2&gt;
   &lt;p>{description}&lt;/p&gt;
   …(etc)
@@ -186,7 +184,7 @@ const {post } = Astro.props
         <p>Y en el html de <code>Post.astro</code>,</p>
         <pre><code class="languaje-html">
 &lt;article&gt;
-  &lt;img src="…" class="rounded"&gt;
+  &lt;img src="/img/gato.webp" class="rounded ..."&gt;
   &lt;h2 class="text-2xl font-bold">{post.title}&lt;/h2&gt;
   &lt;p>{post.description}&lt;/p&gt;
   …(etc)
@@ -200,7 +198,7 @@ const {post } = Astro.props
   </code></pre>
         <pre><code class="languaje-html">
 &lt;article&gt;
-  &lt;img src="…" class="rounded"&gt;
+  &lt;img src="/img/gato.webp" class="rounded ..."&gt;
   &lt;h2 class="text-2xl font-bold">{title}&lt;/h2&gt;
   &lt;p>{description}&lt;/p&gt;
   …(etc)
@@ -302,7 +300,7 @@ const {post: {title, description, content, created_at}} = Astro.props
   <p><code>HTML:</code></p>
   <pre><code class="languaje-html">  
 &lt;article class="..."&gt;
-  &lt;img src="…" class="rounded"&gt;
+  &lt;img src="/img/gato.webp" class="rounded ..."&gt;
   &lt;h2 class="text-2xl font-bold"&gt;{title}&lt;/h2&gt;
   &lt;p>{description}&lt;/p&gt;
   &lt;p class="text-zinc-300"&gt;
