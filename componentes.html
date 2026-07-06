@@ -96,24 +96,37 @@
       para generar el archivo de configuración de tailwind (<code>tailwind.css</code>). Con esto, ya podemos comenzar a
       utilizar tailwind y a dar estilos con él.</p>
 
-    <p>Para darle estilos al componente <code>Post</code>, utiliza los estilos del ejemplo o los que gustes para el
+	<p>Antes de comenzar a cambiar los estilos del componente, se debe importar el archivo <code>global.css</code> 
+		en el <code>frontmatter</code> de la página que utilizará el mismo ( en este caso <code>index.astro</code>), 
+		como se muestra a continuación:</p>
+	        
+<pre><code class="languaje-javascript">
+ ---
+ import '../styles/global.css';
+ import Post from "../components/Post.astro"
+ ---
+</code></pre>
+
+	  <p>Para darle estilos al componente <code>Post</code>, utiliza los estilos del ejemplo o los que gustes para el
       componente.</p>
 
     <pre><code class="languaje-html">
-  &lt;article id="article" class="flex max-w-sm flex-col gap-2 rounded bg-[#1F2937] 
-  px-5 py-6 text-white"&gt;
-    &lt;img src="/img/gato.webp"&gt;
-    &lt;h2 class="text-2xl font-bold"&gt;The Post Title&lt;/h2&gt;
-    &lt;p&gt;A post description&lt;/p&gt;
-    &lt;p class="text-zinc-300"&gt;
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-    Neque eius distinctio aspernatur incidunt, 
-    tempore expedita architecto est, 
-    sint natus, nihil quaerat nisi. 
-    Saepe pariatur nihil fugit itaque 
-    esse doloribus corporis!&lt;/p&gt;
+  &lt;article id="article" 
+    class="flex max-w-sm flex-col gap-2 rounded bg-gray-800 px-5 py-6 text-white"&gt;
+    &lt;img class="rounded w-full h-48 object-cover" src="/img/gato.webp"&gt;
+    &lt;h2 class="text-2xl font-bold">The Post Title&lt;/h2&gt;
+    &lt;p>A post description&lt;/p&gt;
+      &lt;p class="text-zinc-300"&gt;
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+      Neque eius distinctio aspernatur incidunt, 
+      tempore expedita architecto est, 
+      sint natus, nihil quaerat nisi. 
+      Saepe pariatur nihil fugit itaque 
+      esse doloribus corporis!
+    &lt;/p&gt;
     &lt;p class="text-zinc-300"&gt;10/12/2023 - 16 min read&lt;/p&gt;
   &lt;/article&gt;
+	
 </code></pre>
 
     <h3>Usar un componente de forma repetida</h3>
