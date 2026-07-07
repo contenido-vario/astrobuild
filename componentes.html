@@ -17,44 +17,33 @@
   <main class="container mx-auto mt-3 px-6 pt-1 pb-6">
     <h1 class="det">Creación y uso de componentes</h1>
 
-    <p>Todos los framework de <code>Javascript</code> están basados en componentes. Los componentes son como piezas de
-      un puzzle que nos ayudan a reutilizar código de nuestra interfaz. En vez de tener todo el código en un archivo,
-      creamos componentes que nos ayudan tanto a organizar el código como hacerlo reutilizable, porque después, ese
-      componente, lo podemos utilizar en todas las partes de la aplicación que queramos.</p>
+    <p>Todos los framework de <code>Javascript</code> están basados en componentes. Los componentes son como piezas de un puzzle que nos ayudan a reutilizar código de nuestra interfaz. En vez de tener todo el código en un archivo, creamos componentes que nos ayudan tanto a organizar el código como hacerlo reutilizable, porque después, ese componente, lo podemos utilizar en todas las partes de la aplicación que queramos.</p>
 
-    <p>Para agregar componentes al proyecto, dentro del directorio <code>src</code> creamos una carpeta a la cual vamos
-      a llamar <code>components</code>. En esta carpeta vamos a ir creando todos nuestros componentes. Por ejemplo,
-      crearemos un componente que sea la tarjeta de un post para un blog. Llamaremos a este componente
-      <code>PostCard.astro</code></p>
+    <p>Para agregar componentes al proyecto, dentro del directorio <code>src</code> creamos una carpeta a la cual vamos a llamar <code>components</code>. En esta carpeta vamos a ir creando todos nuestros componentes. Por ejemplo, crearemos un componente que sea la tarjeta de un post para un blog. Llamaremos a este componente <code>PostCard.astro</code>
+    </p>
 
-    <p>Los nombres de los archivos de componentes (archivos en <code>src/components</code>), así como los de los
-      <b>Layouts</b> que se verán más adelante, se nombran con la primera letra de cada palabra en mayúscula
-      (<code>UpperCamelCase</code>, como las clases de <code>JavaScript</code>).
-      Los componentes de <i>Astro</i> utilizan la extensión <code>.astro</code> al igual que las páginas.</p>
+    <p>Los nombres de los archivos de componentes (archivos en <code>src/components</code>), así como los de las plantillas o <b>Layouts</b> que se verán más adelante, se nombran con la primera letra de cada palabra en mayúscula (<code>UpperCamelCase</code>, como las clases de <code>JavaScript</code>). Los componentes de <i>Astro</i> utilizan la extensión <code>.astro</code> al igual que las páginas.
+    </p>
 
     <h3>Estructura de un archivo de Astro</h3>
 
-    <p>Un archivo <code>.astro</code> se estructura en dos partes principales separadas por tres guiones (---). Estas
-      partes son:</p>
+    <p>Un archivo <code>.astro</code> se estructura en dos partes principales separadas por tres guiones (---). Estas partes son:</p>
 
     <ol>
-      <li><strong>Frontmatter (scripts)</strong>: Se encuentra en la parte superior del archivo, entre dos bloques de
-        tres guiones (---). Aquí se escribe el código JavaScript (o TypeScript) que se ejecuta en el servidor o durante
-        la compilación. Permite definir variables locales, importar otros componentes y gestionar datos antes del
-        renderizado.</li>
-      <li><strong>Documento HTML</strong>: Está situado debajo del segundo bloque de guiones y define la estructura HTML
-        que se mostrará. Si queremos inyectar <code>Javascript</code> en el HTML, se incluye el código entre llaves { }.
-        Los atributos HTML usan el estándar kebab-case (ejemplo: class, data-value).</li>
+      <li>
+        <p><strong>Frontmatter (scripts)</strong>: Se encuentra en la parte superior del archivo, entre dos bloques de tres guiones (---). Aquí se escribe el código JavaScript (o TypeScript) que se ejecuta en el servidor o durante la compilación. Permite definir variables locales, importar otros componentes y gestionar datos antes del renderizado.</p>
+      </li>
+      <li>
+        <p><strong>Documento HTML</strong>: Está situado debajo del segundo bloque de guiones y define la estructura HTML que se mostrará. Si queremos inyectar <code>Javascript</code> en el HTML, se incluye el código entre llaves { }.Los atributos HTML usan el estándar kebab-case (ejemplo: class, data-value).</p></li>
     </ol>
 
     <h3>Crear un archivo de componente</h3>
 
-    <p>Vamos a crear la siguiente tarjeta usando la etiqueta <code>&lt;article&gt;</code>. A continuación, dejo el
-      código.</p>
+    <p>Vamos a crear la siguiente tarjeta usando la etiqueta <code>&lt;article&gt;</code>. A continuación, dejo el código (copiarlo).</p>
 
-    <pre><code class="languaje-html">
+  <pre><code class="languaje-html">
   &lt;article&gt;
-    &lt;img src="/img/gato.webp"&gt;
+    &lt;img src="/img/gato.webp" alt="gatito"&gt;
     &lt;h2&gt;The Post Title&lt;/h2&gt;
     &lt;p&gt;A post description&lt;/p&gt;
       &lt;p&gt;
@@ -67,39 +56,30 @@
     &lt;/p&gt;
     &lt;p&gt;10/12/2023 - 16 min read&lt;/p&gt;
   &lt;/article&gt;
-</code></pre>
+  </code></pre>
 
-    <p>Dentro colocaremos una imagen (inicialmente utilizaremos cualquier imagen de prueba). La tarjeta se verá de la
-      siguiente manera:</p>
+    <p>Dentro colocaremos una imagen (inicialmente utilizaremos cualquier imagen de prueba). La tarjeta se verá de la siguiente manera:</p>
 
     <h3>Utilizar el componente en una página</h3>
 
-    <p>Para utilizar un componente en una página (en nuestro caso <code>index.html</code>), lo importamos en la sección
-      de <code>frontmatter</code> usando el comando <code>import</code>:</p>
+    <p>Para utilizar un componente en una página (en nuestro caso <code>index.astro</code>), lo importamos en la sección de <code>frontmatter</code> usando el comando <code>import</code>:</p>
 
-    <pre><code class="languaje-javascript">
+<pre><code class="languaje-javascript">
   import Post from "../components/Post.astro"
 </code></pre>
 
-    <p>Ahora indicamos dónde lo queremos ver. Para mostrarlo, en la sección de HTML, creamos una etiqueta con el nombre
-      del mismo, en este caso <code>&lt;Post/&gt;</code> usando la sintaxis de autocierre.</p>
+    <p>Luego, indicamos dónde lo queremos ver. Para mostrarlo, en la sección de HTML, creamos una etiqueta con el nombre del mismo, en este caso <code>&lt;Post/&gt;</code> (usando la sintaxis de autocierre).</p>
 
     <h3>Estilar un componente</h3>
 
-    <p>Para añadir los estilos al componente <code>Post.astro</code> usaremos <strong>tailwind</strong>. Una de las
-      ventajas que tiene Astro es que instalar ciertas herramientas es muy fácil. Para ello, desde la terminal
-      ejecutaremos:</p>
+    <p>Para añadir los estilos al componente <code>Post.astro</code> usaremos <strong>tailwind</strong>. Una de las ventajas que tiene Astro es que instalar ciertas herramientas es muy fácil. Para ello, desde la terminal ejecutaremos:</p>
 
     <pre><code>pnpm astro add tailwind</code></pre>
 
-    <p>Respondemos <strong>Y</strong> (sí) para instalar automáticamente todas las dependencias necesarias y también
-      para generar el archivo de configuración de tailwind (<code>tailwind.css</code>). Con esto, ya podemos comenzar a
-      utilizar tailwind y a dar estilos con él.</p>
+    <p>Respondemos <strong>Y</strong> (sí) para instalar automáticamente todas las dependencias necesarias <strong>y también</strong> para generar el archivo de configuración de tailwind (<code>tailwind.css</code>), es decir dos veces. Con esto, ya podemos comenzar a utilizar tailwind y a dar estilos con él.</p>
 
-	<p>Antes de comenzar a cambiar los estilos del componente, se debe importar el archivo <code>global.css</code> 
-		en el <code>frontmatter</code> de la página que utilizará el mismo ( en este caso <code>index.astro</code>), 
-		como se muestra a continuación:</p>
-	        
+    <p>Antes de comenzar a cambiar los estilos del componente, se debe importar el archivo <code>global.css</code> en el <code>frontmatter</code> de la página que utilizará el mismo ( en este caso <code>index.astro</code>), como se muestra a continuación:</p>
+
 <pre><code class="languaje-javascript">
  ---
  import '../styles/global.css';
@@ -107,13 +87,12 @@
  ---
 </code></pre>
 
-	  <p>Para darle estilos al componente <code>Post</code>, utiliza los estilos del ejemplo o los que gustes para el
-      componente.</p>
+    <p>Para darle estilos al componente <code>Post</code>, utiliza los estilos del ejemplo o los que gustes para el componente.</p>
 
     <pre><code class="languaje-html">
   &lt;article id="article" 
     class="flex max-w-sm flex-col gap-2 rounded bg-gray-800 px-5 py-6 text-white"&gt;
-    &lt;img class="rounded w-full h-48 object-cover" src="/img/gato.webp"&gt;
+    &lt;img class="rounded w-full h-48 object-cover" src="/img/gato.webp" alt="gatito"&gt;
     &lt;h2 class="text-2xl font-bold">The Post Title&lt;/h2&gt;
     &lt;p>A post description&lt;/p&gt;
       &lt;p class="text-zinc-300"&gt;
@@ -131,101 +110,157 @@
 
     <h3>Usar un componente de forma repetida</h3>
 
-    <p>Si yo quisiera mostrar cuatro post en la página de inicio, por ejemplo, puedo ir añadiendo la etiqueta con el
-      nombre del componente <code>&lt;Post/&gt;</code> cuatro veces.</p>
-    <p>Evidentemente todos los cuatro post que se muestran tienen el mismo contenido ya que en estos momentos, el
-      componente es estático. Los componentes estáticos (donde básicamente el contenido no cambia) son excelentes para
-      crear una estructura y diseño básico: encabezados, pies de página, tarjeta del autor, navegación y en general,
-      elementos de la interfaz que no requieren actualizaciones.
-    </p>
+    <p>Si se quisiera mostrar cuatro post en una página (<code>index.astro</code>), por ejemplo, se puede ir añadiendo la etiqueta con el nombre del componente <code>&lt;Post/&gt;</code> cuatro veces.</p>
+    <p>Evidentemente todos los cuatro post que se muestran tienen el mismo contenido ya que en estos momentos, el componente es estático. Los componentes estáticos (donde básicamente el contenido no cambia) son excelentes para crear una estructura y diseño básico: encabezados, pies de página, tarjeta del autor, navegación y en general, elementos de la interfaz que no requieren actualizaciones. Ejemplo:</p>
+
+<pre><code class="languaje-javascript">
+ ---
+ import '../styles/global.css';
+ import Post from "../components/Post.astro"
+ ---
+</code></pre>
+<pre><code class="languaje-html">
+&lt;html lang="es-Es"&gt;
+	&lt;head&gt;
+		&lt;meta charset="utf-8" /&gt;
+		&lt;link rel="icon" type="image/svg+xml" href="/favicon.svg" /&gt;
+		&lt;link rel="icon" href="/favicon.ico" /&gt;
+		&lt;meta name="viewport" content="width=device-width" /&gt;
+		&lt;meta name="generator" content={Astro.generator} /&gt;
+		&lt;title>Astro&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;body class="container w-5/6 p-4"&gt;
+		&lt;h1&gt;Usar componente&lt;/h1&gt;
+
+		&lt;Post/&gt;
+		&lt;Post/&gt;
+		&lt;Post/&gt;
+		&lt;Post/&gt;
+
+	&lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+
+    <p>En el navegador, se verían las cuatro tarjetas o posts seguidos:</p>
+
+    <figure class="w-full text-center">
+      <img class="w-full h-auto object-cover" src="./img/usar-componente.png" alt="usar-componente">
+      <figcaption>index.astro</figcaption>
+    </figure>
+
 
     <h3>Hacer un componente reutilizable</h3>
 
     <p>Para hacer un componente reutilizable se utilizan los <code>props</code>.</p>
 
-    <p>Los props son una manera de pasarle datos a un componente para hacerlo reutilizable. Equivaldrían más o menos a
-      los argumentos de una función. </p>
-
-    <p>Para pasarle información o <code>props</code> a un componente, se pueden usar tres maneras.</p>
+    <p>Los <code>props</code> son una manera de pasarle datos a un componente para hacerlo reutilizable. Equivaldrían más o menos a los argumentos de una función. Para pasarle información o <code>props</code> a un componente, se pueden usar tres maneras.</p>
 
     <ol>
       <li>
-        <p><strong>Enviarle texto al componente:</strong></p>
-        <p>Desde el archivo donde se incluye el componente se pasan los props de manera similar a los argumentos de una
-          función. Ejemplo:</p>
-        <pre><code class="languaje-html">
-      &lt;Post title="Nuevo post" description="Descripción del nuevo post."/&gt;
-    </code></pre>
+        <p class="text-lg mt-2 font-semibold">Enviarle texto al componente:</p>
+        <p>Desde el archivo donde se incluye el componente se pasan los <code>props</code> de manera similar a los argumentos de una función. Ejemplo:</p>
+
+<pre><code class="languaje-html">
+  &lt;Post title="Nuevo post" description="Descripción del nuevo post."/&gt;
+</code></pre>
 
         <p>Y en el componente <code>Post.astro</code>, se leería de la siguiente manera.</p>
         <p>En el frontmatter se escribiría lo siguiente:</p>
-        <pre><code class="languaje-javascript">
+
+<pre><code class="languaje-javascript">
   ---
   const {title, description } = Astro.props
   ---
-    </code></pre>
+</code></pre>
 
         <p>Y en el html de <code>Post.astro</code>:</p>
-        <pre><code class="languaje-html">
-&lt;article&gt;
-  &lt;img src="/img/gato.webp" class="rounded..."&gt;
-  &lt;h2 class="text-2xl font-bold">{title}&lt;/h2&gt;
-  &lt;p>{description}&lt;/p&gt;
-  …(etc)
-    </code></pre>
+
+<pre><code class="languaje-html">
+  &lt;article id="article" 
+    class="flex max-w-sm flex-col gap-2 rounded bg-gray-800 px-5 py-6 text-white"&gt;
+    &lt;img class="rounded w-full h-48 object-cover" src="/img/gato.webp" alt="gatito"&gt;
+    &lt;h2 class="text-2xl font-bold"&gt;{title}&lt;/h2&gt;
+    &lt;p&gt;{description}&lt;/p&gt;
+      &lt;p class="text-zinc-300"&gt;
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+      Neque eius distinctio aspernatur incidunt, 
+      tempore expedita architecto est, 
+      sint natus, nihil quaerat nisi. 
+      Saepe pariatur nihil fugit itaque 
+      esse doloribus corporis!
+    &lt;/p&gt;
+    &lt;p class="text-zinc-300"&gt;10/12/2023 - 16 min read&lt;/p&gt;
+  &lt;/article&gt;
+</code></pre>
+
       </li>
       <li>
-        <p><strong>Enviar un objeto de JavaScript con toda la información</strong></p>
-        <p>Las primeras llaves (exteriores) indican que el contenido será código JavaScript, no un texto. Las llaves
-          interiores indican que el código es un objeto. Desde <code>index.html</code></p>
+        <p class="text-lg mt-2 font-semibold">Enviar un objeto de JavaScript con toda la información</p>
+        <p>Las primeras llaves (exteriores) indican que el contenido será código JavaScript, no un texto. Las llaves interiores indican que el código es un objeto. Desde el archivo donde se incluye el componente:</p>
 
-        <pre><code class="languaje-html">
-&lt;Post post = {{
-	title: ‘Un nuevo post’,
-	description: ‘Descripción del nuevo post’
-}}/&gt;
-    </code></pre>
+<pre><code class="languaje-html">
+  &lt;Post post = {{
+    title: ‘Un nuevo post’,
+    description: ‘Descripción del nuevo post’
+  }}/&gt;
+</code></pre>
 
         <p>Y en el componente <code>Post.astro</code>, se leería de la siguiente manera:</p>
-        <p>En el frontmatter se escribiría lo siguiente:</p>
-        <pre><code class="languaje-javascript">
----
-const {post } = Astro.props
----
-    </code></pre>
+        <p>En el <code>frontmatter</code> se escribiría lo siguiente:</p>
+
+<pre><code class="languaje-javascript">
+  ---
+  const {post} = Astro.props
+  ---
+</code></pre>
 
         <p>Y en el html de <code>Post.astro</code>,</p>
-        <pre><code class="languaje-html">
-&lt;article&gt;
-  &lt;img src="/img/gato.webp" class="rounded ..."&gt;
-  &lt;h2 class="text-2xl font-bold">{post.title}&lt;/h2&gt;
-  &lt;p>{post.description}&lt;/p&gt;
-  …(etc)
-    </code></pre>
 
-        <p>O aplicando destructuración</p>
-        <pre><code class="languaje-javascript">
+<pre><code class="languaje-html">
+  &lt;article id="article" 
+    class="flex max-w-sm flex-col gap-2 rounded bg-gray-800 px-5 py-6 text-white"&gt;
+    &lt;img class="rounded w-full h-48 object-cover" src="/img/gato.webp" alt="gatito"&gt;
+    &lt;h2 class="text-2xl font-bold"&gt;{post.title}&lt;/h2&gt;
+    &lt;p&gt;{post.description}&lt;/p&gt;
+      &lt;p class="text-zinc-300"&gt;
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+      Neque eius distinctio aspernatur incidunt, 
+      tempore expedita architecto est, 
+      sint natus, nihil quaerat nisi. 
+      Saepe pariatur nihil fugit itaque 
+      esse doloribus corporis!
+    &lt;/p&gt;
+    &lt;p class="text-zinc-300"&gt;10/12/2023 - 16 min read&lt;/p&gt;
+  &lt;/article&gt;
+</code></pre>
+
+        <p>O aplicando <a target="_blank" rel="noopener" href="https://contenido-vario.github.io/js1/destructuracion.html">destructuración</a></p>
+
+<pre><code class="languaje-javascript">
   ---
   const {post: {title, description}} = Astro.props
   ---
-  </code></pre>
-        <pre><code class="languaje-html">
-&lt;article&gt;
-  &lt;img src="/img/gato.webp" class="rounded ..."&gt;
-  &lt;h2 class="text-2xl font-bold">{title}&lt;/h2&gt;
-  &lt;p>{description}&lt;/p&gt;
-  …(etc)
-    </code></pre>
+</code></pre>
+
+<pre><code class="languaje-html">
+  &lt;article id="article" 
+    class="flex max-w-sm flex-col gap-2 rounded bg-gray-800 px-5 py-6 text-white"&gt;
+    &lt;img class="rounded w-full h-48 object-cover" src="/img/gato.webp" alt="gatito"&gt;
+    &lt;h2 class="text-2xl font-bold"&gt;{title}&lt;/h2&gt;
+    &lt;p&gt;{description}&lt;/p&gt;
+    ...
+</code></pre>
+
       </li>
       <li>
-        <p><strong>Pasar la información desde una Base de Datos</strong></p>
-        <p>Uno de los métodos más usuales, es que la información de los post no se escriba de forma estática en el
-          código sino que se tengan los post guardados en una base de datos. Para simular que tenemos una base de datos
-          vamos a utilizar una librería llamada <code>JSON-Server</code> la cual es muy útil para pruebas porque simula
-          que tenemos una base de datos. Lo haremos todo, en la próxima sección.</p>
+        <p class="text-lg mt-4 font-semibold">Pasar la información desde una Base de Datos</p>
+        <p>Uno de los métodos más usuales, es que la información de los <em>post</em> no se escriba de forma estática en el código sino que se tengan los post guardados en una base de datos. Para simular que tenemos una base de datos.</p>
+        <p>Para este ejemplo, utilizaremos una librería llamada <code>JSON-Server</code> la cual es muy útil para pruebas porque simula que tenemos una base de datos. Lo haremos todo, en el próximo punto.</p>
       </li>
     </ol>
-    <h3>Instalar la librería JSON-Server</h3>
+
+    <h3 class="mt-4">Instalar la librería JSON-Server</h3>
 
     <p>Para instalar la librería, detenemos el servidor (<code>Ctrl C</code>) y ejecutamos desde la terminal:</p>
 
@@ -233,96 +268,108 @@ const {post } = Astro.props
   pnpm install -g json-server
 </code></pre>
 
-  <p>La dirección de esta librería es <code>npmjs.com/package/json-server</code></p>
+    <p>La dirección de esta librería es <code>npmjs.com/package/json-server</code></p>
 
-  <p>Una vez instalada, creamos un archivo con un código <code>json</code> y ponemos las distintas propiedades. Esto va a simular que tenemos una base de datos a la cual nos va a dejar hacer peticiones, crear recursos y demás. Lo hacemos en la raíz del proyecto creando un archivo llamado <code>db.json</code>.</p>
+    <p>Una vez instalada, creamos un archivo con un código <code>json</code> y ponemos las distintas propiedades. Esto va a simular que tenemos una base de datos a la cual nos va a dejar hacer peticiones, crear recursos y demás. Lo hacemos en la raíz del proyecto creando un archivo llamado <code>db.json</code>.</p>
 
-  <p>En este archivo, pegamos todos los datos que queremos simular que tenemos dentro de una base de datos. Ver ejemplo:</p>
+    <p>En este archivo, pegamos todos los datos que queremos simular que tenemos dentro de una base de datos. Ejemplo:</p>
 
-  <pre><code class="languaje-json">
-    {
-      "posts": [
-        {
-          "id": 1,
-          "title":"",
-          "description":"",
-          "content": "",
-          "created_at": ""
-        },
-        {
-          "id": 2,
-          "title":"",
-          "description":"",
-          "content": "",
-          "created_at": ""
-        }
-      ]
-    }
-  </code></pre>
-  <p>Para ejecutar la BBDD usamos el siguiente comando desde la terminal:</p>
-  <pre><code>
-    json-server --watch db.json
-  </code></pre>
-  
-  <p>En este caso el nombre de nuestro archivo JSON es <code>db.json</code>.</p>
+    <blockquote class="font-mono text-sm">
+      <script src="https://gist.github.com/contenido-vario/05ad411f80e06b91df6cab0e9825dbe6.js"></script>
+    </blockquote>
 
-  <p>Se nos dará una URL accesible <span class="text-blue-500 underline ">https://localhost/3000</span>, desde la cual podemos acceder a los datos (la podemos apreciar en la terminal, bajo el título <code>Resources</code>). Si la abrimos en el navegador, podemos apreciar que tenemos el JSON con la información de todos los posts.</p>
+    <p>Para ejecutar la BBDD usamos el siguiente comando desde la terminal:</p>
 
-  <h3>Traer datos de JSON</h3>
+<pre><code>
+  json-server --watch db.json
+</code></pre>
 
-  <p>Para traer los datos y mostrarlos en los post abrimos el archivo donde se incluye el componente (en este caso, <code>index.astro</code>. Usaremos el <code>frontmatter</code> de nuestro archivo ya que la petición se va a ejecutar del lado del servidor.</p>
+    <p>En este caso el nombre de nuestro archivo JSON es <code>db.json</code>.</p>
 
-  <p>Desde el <code>frontmatter</code>, podemos hacer peticiones a nuestra base de datos y utilizar datos que no queremos que se expongan en el navegador del cliente.</p>
+    <p>Se nos dará una URL accesible (<code>Endpoint</code>) <span class="text-blue-500 underline ">https://localhost:3000/posts</span>, desde la cual podemos acceder a los datos. Si la abrimos en el navegador, podemos apreciar que tenemos el JSON con la información de todos los posts.</p>
 
-  <p>Hacemos un <code>fetch</code> para traernos datos de la red:</p>
-  <pre><code class="languaje-javascript">
-    ---
-    import Post from "../components/Post.astro";
-    const respuesta = await fetch("http://localhost/3000");
-    const post = await respuesta.json();
-    ---
-  </code></pre>
-    
-  <p>Una de las grandes ventajas de <i>Astro</i> es que tiene una funcionalidad que se conoce como <code>top level await</code> y que básicamente significa que se puede utilizar el <code>await</code> fuera de una función asíncrona. Con lo cual para extraer los    post, simplemente utilizamos las dos lineas que están debajo del <code>import</code>.</p>
+    <h3>Traer datos de JSON</h3>
 
-  <p>Como desde el HTML del archivo podemos acceder ahora a cualquier variable que se haya definido en el <code>frontmatter</code>, quitaremos los cuatro componentes <code>&lt;Post/&gt;</code> que habíamos creado de forma estática y mostraremos un post por cada post que tengamos en la base de datos.</p>
+    <p>Para traer los datos y mostrarlos en los post abrimos el archivo donde se incluye el componente. Usaremos el <code>frontmatter</code> de nuestro archivo ya que la petición se va a ejecutar del lado del servidor.</p>
 
-  <p>Para ello, convertiremos el array de objetos en un array de componentes post utilizando el método <code>.map</code>. <mark>Para indicar al HTML en <i>Astro</i> que insertaremos <code>Javascript</code>, utilizamos llaves <strong>{ }</strong></mark>. Accedemos a la variable <code>post</code> y hacemos un <code>map</code> para renderizar por cada uno de los post, un componente <code>&lt;Post/&gt;</code>.</p>
+    <p>Desde el <code>frontmatter</code>, podemos hacer peticiones a nuestra base de datos y utilizar datos que no queremos que se expongan en el navegador del cliente.</p>
 
-    <pre><code class="languaje-html">
-&lt;body&gt;
-  &lt;h1>Astro&lt;/h1&gt;
+    <p>Hacemos un <code>fetch</code> para traernos datos de la red:</p>
+
+<pre><code class="languaje-javascript">
+---
+import '../styles/global.css';
+import PostBbdd from "../components/PostBbdd.astro";
+const respuesta = await fetch("http://localhost:3000/posts");
+const post = await respuesta.json();
+---
+</code></pre>
+
+    <p>Una de las grandes ventajas de <i>Astro</i> es que tiene una funcionalidad que se conoce como <code>top level await</code> y que básicamente significa que se puede utilizar el <code>await</code> fuera de una función asíncrona. Con lo cual para extraer los post, simplemente utilizamos las dos lineas que están debajo del
+    <code>import</code>.</p>
+
+    <p>Como desde el HTML del archivo podemos acceder ahora a cualquier variable que se haya definido en el <code>frontmatter</code>, quitaremos los cuatro componentes <code>&lt;Post/&gt;</code> que habíamos creado de forma estática y mostraremos un post por cada post que tengamos en la base de datos.</p>
+
+    <p>Para ello, convertiremos el array de objetos en un array de componentes post utilizando el método <code>.map</code>. <mark>Para indicar al HTML en <i>Astro</i> que insertaremos <code>Javascript</code>, utilizamos llaves <strong>{ }</strong></mark>. Accedemos a la variable <code>post</code> y hacemos un <code>map</code> para renderizar por cada uno de los post, un componente <code>&lt;PostBbdd/&gt;</code>.</p>
+
+<pre><code class="languaje-html">
+&lt;body class="container w-5/6 p-4 mx-auto"&gt;
+  &lt;h1class="text-3xl text-center"&gt;Leer desde BBDD&lt;/h1&gt;
   &lt;!-- div para mostrar los posts en forma de galería --&gt;
   &lt;div class="grid max-w-7xl mx-auto w-full justify-center
-  justify-items-center items-center gap-4 px-2 sm:grid:cols-2
+  justify-items-center items-center gap-4 px-2 sm:grid-cols-2
   lg:grid-cols-3"&gt;
-    { post.map(post =&gt; &lt;Post post={post}/&gt;) }
+    { post.map((post: any) =&gt; &lt;PostBbdd post={post}/&gt;) }
   &lt;/div&gt;
 &lt;/body&gt;
 </code></pre>
 
-  <p>El map de <code>Javascript</code> recibe cada uno de los post y por cada post devuelve un componente <code>&lt;Post/&gt;</code> y a ese componente, le pasamos un <code>prop</code> llamado <code>post</code> con el valor de cada uno de los post del array.</p>
+    <p>El map de <code>Javascript</code> recibe cada uno de los post y por cada post devuelve un componente <code>&lt;PostBbdd/&gt;</code> y a ese componente, le pasamos un <code>prop</code> llamado <code>post</code> con el valor de cada uno de los post del array.</p>
 
-  <p>En el componente <code>Post.astro</code>, se leería de la siguiente manera:</p>
-  <p><code>Frontmatter:</code></p>
-  <pre><code class="languaje-javascript">
----
-const {post: {title, description, content, created_at}} = Astro.props
----
-  </code></pre>
-  <p><code>HTML:</code></p>
-  <pre><code class="languaje-html">  
-&lt;article class="..."&gt;
-  &lt;img src="/img/gato.webp" class="rounded ..."&gt;
-  &lt;h2 class="text-2xl font-bold"&gt;{title}&lt;/h2&gt;
-  &lt;p>{description}&lt;/p&gt;
-  &lt;p class="text-zinc-300"&gt;
-    {content.slice(0,100) + "..."}
-  &lt;/p&gt;
-  &lt;p class="text-zinc-300"&gt;{new Date(created_at).toLocaleDateString()}&lt;/p&gt;
-&lt;/article>
-  </code></pre>
-  <p>Si vamos al navegador, podremos ver los distintos posts de la Base de Datos.</p>
+    <p>En el componente <code>PostBbdd.astro</code>, se leería de la siguiente manera:</p>
+    <p><code>Frontmatter:</code></p>
+
+<pre><code class="languaje-javascript">
+  ---
+  const {post: {title, description, content, created_at, image}} = Astro.props
+  ---
+</code></pre>
+
+    <p><code>HTML:</code></p>
+
+<pre><code class="languaje-html">  
+  &lt;article class="flex max-w-sm flex-col gap-2 rounded bg-gray-800 
+  px-5 py-6 text-white"&gt;
+    &lt;img class="rounded w-full h-48 object-cover" src={image} alt={title}&gt;
+    &lt;h2 class="text-2xl font-bold"&gt;{title}&lt;/h2&gt;
+    &lt;p>{description}&lt;/p&gt;
+    &lt;p class="text-zinc-300"&gt;
+      {content.slice(0,100) + "..."}
+    &lt;/p&gt;
+    &lt;p class="text-zinc-300"&gt;{new Date(created_at).toLocaleDateString()}&lt;/p&gt;
+  &lt;/article>
+</code></pre>
+
+<p>Ahora, abrimos una nueva terminal, con el botón + </p>
+<figure><img src="./img/nueva-terminal.png" alt="abrir nueva terminal"></figure>
+<p>Ejecutamos nuevamente el comando para el servidor de desarrollo</p>
+
+<pre><code>
+  pnpm run dev
+</code></pre>
+
+<p><strong>Es IMPORTANTE</strong> que  queden dos procesos corriendo al mismo tiempo, cada uno en su propia pestaña:</p>
+
+<p><strong>Pestaña 1</strong>:Servidor de Base de Datos. Ejecutando la "base de datos" con <code>json-server --watch db.json</code></p>
+<p><strong>Pestaña 2</strong>: Servidor de Aplicación. Ejecutando el proyecto de Astro con <code>pnpm run dev</code>.</p>
+
+<p>Y si vamos al navegador, podremos ver los distintos posts de la Base de Datos.</p>
+
+<figure class="mb-12">
+  <img src="./img/leer-db-json.png" alt="Leer desde Base de Datos">
+</figure>
+
+
   </main>
 </body>
 
