@@ -351,7 +351,7 @@ import Post from "../components/Post.astro"
     <pre><code class="languaje-javascript">
 ---
 import '../styles/global.css';
-import PostBbdd from "../components/PostBbdd.astro";
+import Post from "../components/Post.astro";
 const respuesta = await fetch("http://localhost:3000/posts");
 const post = await respuesta.json();
 ---
@@ -381,17 +381,17 @@ const post = await respuesta.json();
   &lt;div class="grid max-w-7xl mx-auto w-full justify-center
   justify-items-center items-center gap-4 px-2 sm:grid-cols-2
   lg:grid-cols-3"&gt;
-    { post.map((post: any) =&gt; &lt;PostBbdd post={post}/&gt;) }
+    { post.map((post: any) =&gt; &lt;Post post={post}/&gt;) }
   &lt;/div&gt;
 &lt;/body&gt;
 </code></pre>
 
     <p>El map de <code>Javascript</code> recibe cada uno de los post y por cada post devuelve un componente
-      <code>&lt;PostBbdd/&gt;</code> y a ese componente, le pasamos un <code>prop</code> llamado <code>post</code> con
+      <code>&lt;Post/&gt;</code> y a ese componente, le pasamos un <code>prop</code> llamado <code>post</code> con
       el valor de cada uno de los post del array.
     </p>
 
-    <p>En el componente <code>PostBbdd.astro</code>, se leería de la siguiente manera:</p>
+    <p>En el componente <code>Post.astro</code>, se leería de la siguiente manera:</p>
     <p><code>Frontmatter:</code></p>
 
     <pre><code class="languaje-javascript">
