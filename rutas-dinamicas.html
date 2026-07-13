@@ -17,35 +17,13 @@
   <main class="container mx-auto mt-3 px-6 pt-1 pb-6">
   <h1 class="det">Rutas Dinámicas</h1>
 
-  Hay veces que se necesita tener rutas de varios niveles. Un ejemplo lo tenemos en el blog. Necesitamos que al hacer clic en una tarjeta, Astro me lleve a una página donde se muestre el contenido del post entero. Para ello la ruta sería algo como /posts/1. (el post en concreto que tenga el id = 1).
+  <p>Hay veces que se necesita tener rutas de varios niveles. Un ejemplo lo tenemos en el blog. Necesitamos que al hacer clic en una tarjeta, Astro me lleve a una página donde se muestre el contenido del post entero. Para ello la ruta sería algo como /posts/1. (el post en concreto que tenga el id = 1).</p>
 
-Si nos fijamos no es una página como la de about que está al mismo nivel de las otras, sino que es necesario tener dos niveles:  posts/ y dentro de posts el archivo del post. 
+  <p>Si nos fijamos no es una página como la de <code>Acerca de</code>, que está al mismo nivel de las otras, sino que es necesario tener dos niveles:  posts/ y dentro de posts el archivo del post.</p> 
 
-En este caso lo que necesitamos se conoce como ruta
-dinámicas para poner una ruta dinámica vamos a crearla y vamos a ponerle un
-identificador al sector o al segmento que va a ser Dinámico en este caso como
-quiero identificar cada post por un ID le voy a poner de nombre ID vale este va a ser el segmento que voy a utilizar
-para identificarlo y ahora le pongo su extensión punto
-Astro y ahora aquí lo que puedo hacer por ejemplo es importar mi layout que es
-el que vamos a utilizar en todas las páginas vamos a importar le habíamos
-llamado default layout le voy a poner default
-layout y aquí dentro voy a mostrar por ejemplo estás en la página
-un si intentamos acceder a esa ruta post un por ejemplo nos va a dar un error que
-va a decir get static pad function required para ruta dinámica esto Qué significa significa que cuando
-utilizamos el modo de renderización en estático sabemos que todas las páginas
-se generan en el momento del compilado entonces para que en el
-compilado pueda saber cuántas página tiene que generar necesitamos utilizar
-una función esto no pasa si utilizamos el modelo de renderizado en el servidor
-porque entonces únicamente recibiríamos ese número ese ID del post
-y haríamos una petición a la base de datos y traíamos el contenido pero como el contenido se va a generar durante el
-compilado y cuando el usuario aceda ya va a estar listo pues Astro tiene que saber cuántas páginas tiene que generar
-en este caso tiene que generar una por cada post pues tenemos que decirle Cuántos post tenemos y Cuál es la
-información de cada uno de ellos que tiene que Mostrar así que bueno nos queda claro lo que necesitamos tenemos
-que exportar una función que la vamos a hacer asíncrona para poder utilizar a we dentro y la vamos a llamar get static
-pads lo primero que para saber cuántos post tenemos tenemos que hacer una
-petición a nuestra base de datos Entonces como esto ya lo hacíamos en la página principal voy a reutilizar el
-código que hacíamos para traer los distintos post Y ahora cuál es la
-sintaxis que tiene que tener esta función Pues aquí nos dice que por cada uno vale por cada uno de nuestros
+  <p>En este caso lo que necesitamos se conoce como ruta dinámica. Para generar rutas dinámicas en Astro, se crea y se coloca un id al sector o al segmento de la página que va a ser Dinámico. En en este caso, como se desea identificar cada post por un ID, se numerarán las entradas consecutivamente y este va a ser el segmento que se va a utilizar para identificar cada entrada junto con la extensión astro.</p>
+
+  Importamos el layout a utilizar en todas las páginas, por ejemplo <code>DefaultLayout</code> le voy a poner default layout y aquí dentro voy a mostrar por ejemplo estás en la página un si intentamos acceder a esa ruta post un por ejemplo nos va a dar un error que va a decir get static pad function required para ruta dinámica esto Qué significa significa que cuando utilizamos el modo de renderización en estático sabemos que todas las páginas se generan en el momento del compilado entonces para que en el compilado pueda saber cuántas página tiene que generar necesitamos utilizar una función esto no pasa si utilizamos el modelo de renderizado en el servidor porque entonces únicamente recibiríamos ese número ese ID del post y haríamos una petición a la base de datos y traíamos el contenido pero como el contenido se va a generar durante el compilado y cuando el usuario aceda ya va a estar listo pues Astro tiene que saber cuántas páginas tiene que generar en este caso tiene que generar una por cada post pues tenemos que decirle Cuántos post tenemos y Cuál es la información de cada uno de ellos que tiene que Mostrar así que bueno nos queda claro lo que necesitamos tenemos que exportar una función que la vamos a hacer asíncrona para poder utilizar a we dentro y la vamos a llamar get static pads lo primero que para saber cuántos post tenemos tenemos que hacer una petición a nuestra base de datos Entonces como esto ya lo hacíamos en la página principal voy a reutilizar el código que hacíamos para traer los distintos post Y ahora cuál es la sintaxis que tiene que tener esta función Pues aquí nos dice que por cada uno vale por cada uno de nuestros
 elementos en este caso por cada uno de nuestros post dentro de una aray tenemos que devolver un objeto con la propiedad
 params y el nombre de la propiedad que utilizamos para identificarlo que es el nombre que le hemos puesto a este
 segmento Dinámico el ID entonces sabemos que tenemos que devolver un objeto por

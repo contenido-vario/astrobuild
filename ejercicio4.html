@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./img/rt.ico" type="image/x-ico">
+  <title>Astro</title>
+
+  <!-- Cargar el archivo CSS de distribución -->
+  <link rel="stylesheet" href="./dist/output.css">
+
+  <script src="./js/highlight-setup.js" defer></script>
+</head>
+
+<body class="bg-stone-100 leading-normal tracking-normal">
+  <main class="container mx-auto mt-3 px-6 pt-1 pb-6">
+    <h1 class="det">Ejercicio de Integración. Layout/Páginas</h1>
+    <ol>
+      <li>Reharemos el <a href="https://contenido-vario.github.io/clase6/" target="blank">Curriculum Vitae</a> en Astro.</li>
+      <li>Elimina del CV la página <code>Aficiones</code>.</li>
+      <li>
+        Crea un <code>Layout</code> similar al <code>DefaultLayout</code> del ejercicio anterior para el CV. 
+        En este caso:
+        <ul>
+          <li>- El <code>Layout</code> deberá tener un <code>&lt;header></code> con su barra de navegación.</li> 
+          <li>- En el <code>&lt;main></code> irá el <code>&lt;slot/></code> principal (lo que varía de cada página del CV)</li> 
+          <li>- Deberéis crear un <code>named slot</code> para mostrar los títulos de cada página.</li> 
+          <li>- El <code>&lt;footer></code> será similar al del ejemplo. Dejadlo en una posición fija al final de la página.</li>
+        </ul>
+      </li>
+    </ol>   
+  </main>
+</body>
+
+</html>
